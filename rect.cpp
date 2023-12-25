@@ -35,7 +35,7 @@ int main(int, char**)
         return -1;
     }
 
-    auto shaderProgram = load_program("../../../vertex.glsl", "../../../fragment.glsl");
+    auto shaderProgram = load_program("../vertex.glsl", "../fragment.glsl");
     /* -------------------------------------------------------------------------- */
     /*     set up vertex data (and buffer(s)) and configure vertex attributes     */
     /* -------------------------------------------------------------------------- */
