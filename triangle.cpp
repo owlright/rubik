@@ -37,7 +37,7 @@ int main(int, char**)
     GLint nrAttributes;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
     std::cout << "Max Number of vetex attribs: " << nrAttributes << std::endl;
-    auto shaderProgram = load_program("../vertex.glsl", "../fragment.glsl");
+    auto shaderProgram = load_program("../shaders/vertex.glsl", "../shaders/fragment.glsl");
 
     /* -------------------------------------------------------------------------- */
     /*     set up vertex data (and buffer(s)) and configure vertex attributes     */
