@@ -18,6 +18,18 @@ find_package(GLEW REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/exercise)
+# Get a list of all .cpp files
+file(GLOB EXERCISE_FILES "${CMAKE_CURRENT_SOURCE_DIR}/exercise/*.cpp")
+foreach(CPP_FILE ${EXERCISE_FILES})
+    # Get the filename without directory or extension
+    get_filename_component(CPP_FILE_WE ${CPP_FILE} NAME_WE)
+    # Add compile target
+    add_executable(${CPP_FILE_WE} ${CPP_FILE})
+    # Link to the library
+    target_link_libraries(${CPP_FILE_WE} PRIVATE util glfw glad::glad)
+endforeach()
+
 add_executable(triangle triangle.cpp)
 add_executable(rect rect.cpp)
 add_library(util ${SOURCE_FILES})
