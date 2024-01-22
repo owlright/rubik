@@ -7,6 +7,12 @@
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) { glViewport(0, 0, width, height); }
 
+void processInput(GLFWwindow *window)
+{
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
+
 int main(int, char**)
 {
     glfwInit();
@@ -53,7 +59,9 @@ int main(int, char**)
     unsigned int VBO, VAO, EBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
+    // 1. bind the Vertex Array Object first,
+    // 2. then bind and set vertex buffer(s),
+    // 3. and then configure vertex attributes(s).
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -84,6 +92,7 @@ int main(int, char**)
     /* -------------------------------------------------------------------------- */
     while (!glfwWindowShouldClose(window)) {
         // input
+        processInput(window);
 
         // render
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -96,8 +105,8 @@ int main(int, char**)
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, indices);
 
         // check and call events and swap the buffer
-        glfwSwapBuffers(window);
         glfwPollEvents();
+        glfwSwapBuffers(window);
     }
     glfwTerminate();
     return 0;
