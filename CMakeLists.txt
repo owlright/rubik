@@ -32,8 +32,10 @@ endforeach()
 
 add_executable(triangle triangle.cpp)
 add_executable(rect rect.cpp)
+add_executable(line drawLine.cpp)
 add_library(util ${SOURCE_FILES})
 target_link_libraries(triangle PRIVATE util glfw glad::glad)
 target_link_libraries(rect PRIVATE util glfw glad::glad)
 target_link_libraries(util PRIVATE glfw lodepng)
+target_link_libraries(line PRIVATE util glfw glad::glad)
 
