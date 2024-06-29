@@ -38,8 +38,14 @@ int main( void )
 
     GLfloat lineVertices[] =
     {
-        200, 100, 0,
-        100, 300, 0
+        100, 100, 0,
+        300, 100, 0,
+        100, 100, 0,
+        100, 300, 0,
+        100, 300, 0,
+        300, 300, 0,
+        300, 300, 0,
+        300, 100, 0,
     };
 
     // Loop until the user closes the window
@@ -49,13 +55,15 @@ int main( void )
 
         // Render OpenGL here
         glEnable( GL_LINE_SMOOTH );
-        glEnable( GL_LINE_STIPPLE );
+        // glEnable( GL_LINE_STIPPLE );
         glPushAttrib( GL_LINE_BIT );
-        glLineWidth( 2 );
+        glLineWidth( 1 );
         glLineStipple( 1, 0x00FF );
         glEnableClientState( GL_VERTEX_ARRAY );
         glVertexPointer( 3, GL_FLOAT, 0, lineVertices );
-        glDrawArrays( GL_LINES, 0, 2 );
+        glDrawArrays( GL_LINES, 0, 8 );
+        // glVertexPointer( 3, GL_FLOAT, 6, lineVertices );
+        // glDrawArrays( GL_LINES, 0, 2 );
         glDisableClientState( GL_VERTEX_ARRAY );
         glPopAttrib( );
         glDisable( GL_LINE_STIPPLE );
