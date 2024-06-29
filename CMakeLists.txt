@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5.0)
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-  CACHE STRING "Vcpkg toolchain file")
+# set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+#   CACHE STRING "Vcpkg toolchain file")
 
 # set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/Debug)
@@ -39,3 +39,9 @@ target_link_libraries(rect PRIVATE util glfw glad::glad)
 target_link_libraries(util PRIVATE glfw lodepng)
 target_link_libraries(line PRIVATE util glfw glad::glad)
 
+# 仅当使用MSVC编译器时设置/SUBSYSTEM:WINDOWS
+if(MSVC)
+    set_target_properties(line PROPERTIES
+        LINK_FLAGS "/ENTRY:mainCRTStartup /SUBSYSTEM:WINDOWS"
+    )
+endif()
