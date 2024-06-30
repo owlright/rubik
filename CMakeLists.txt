@@ -5,6 +5,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_Release ${CMAKE_CURRENT_SOURCE_DIR}/Release)
 project(rubik VERSION 0.1.0 LANGUAGES C CXX)
 # ! 方便调试
 set(CMAKE_VERBOSE_MAKEFILE ON)
+# This option (CMAKE_EXPORT_COMPILE_COMMANDS) is implemented only by Makefile Generators and the Ninja. It is ignored on other generators.
+# Thus, there is no solution to generate compile_commands.json file when using MSVC.
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
